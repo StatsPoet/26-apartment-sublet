@@ -1,0 +1,628 @@
+/* ==========================================================================
+   Apartment sublets — shared styles
+   All visual decisions live in the design tokens below. To change the look
+   of the whole site (sizes, spacing, colours, gallery), edit a token rather
+   than adding rules to individual elements.
+   ========================================================================== */
+
+@font-face {
+  font-family: "Instrument Serif";
+  src: url("../fonts/instrument-serif-400.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Instrument Serif";
+  src: url("../fonts/instrument-serif-400-italic.woff2") format("woff2");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* --- Design tokens ------------------------------------------------------- */
+
+:root {
+  color-scheme: light;
+
+  /* Typography */
+  --font-display: "Instrument Serif", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-h3: 1.625rem;
+  --text-h2: clamp(2rem, 1.6rem + 1.6vw, 2.75rem);
+  --text-h1: clamp(2.75rem, 1.9rem + 3.6vw, 4.5rem);
+  --leading-tight: 1.05;
+  --leading-body: 1.6;
+
+  /* Spacing scale */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4.5rem;
+
+  /* Layout */
+  --page-width: 70rem;
+  --text-width: 40rem;
+  --gutter: var(--space-4);
+  --section-space: var(--space-7);
+
+  /* Colours */
+  --color-bg: #f5ede3;
+  --color-surface: #fbf6ef;
+  --color-text: #2b211b;
+  --color-muted: #6a584b;
+  --color-border: #e2d3c1;
+  --color-accent: #9a472b;
+  --color-accent-hover: #7d3820;
+  --color-on-accent: #fffaf3;
+  --color-placeholder: #e9dccb;
+
+  /* Shape */
+  --radius-sm: 0.5rem;
+  --radius: 1rem;
+  --radius-pill: 999px;
+
+  /* Gallery */
+  --gallery-item-mobile: 85%;
+  --gallery-ratio: 4 / 3;
+  --gallery-columns: 3;
+}
+
+/* Breakpoint: 48em (about 768px) switches from the phone layout to the
+   tablet/desktop layout. CSS variables cannot be used inside media queries,
+   so this value is repeated in each @media rule below. */
+@media (min-width: 48em) {
+  :root {
+    --gutter: var(--space-6);
+    --section-space: var(--space-8);
+  }
+}
+
+/* --- Base ---------------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: var(--leading-body);
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0 0 var(--space-4);
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: var(--leading-tight);
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+h1 { font-size: var(--text-h1); }
+h2 { font-size: var(--text-h2); }
+h3 { font-size: var(--text-h3); }
+
+p {
+  margin: 0 0 var(--space-4);
+  max-width: var(--text-width);
+}
+
+a {
+  color: var(--color-accent);
+  text-underline-offset: 0.15em;
+}
+
+a:hover {
+  color: var(--color-accent-hover);
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.skip-link {
+  position: absolute;
+  top: -10rem;
+  left: var(--space-4);
+  z-index: 10;
+  padding: var(--space-2) var(--space-4);
+  background: var(--color-surface);
+  border-radius: var(--radius-sm);
+}
+
+.skip-link:focus {
+  top: var(--space-4);
+}
+
+.container {
+  width: min(100% - 2 * var(--gutter), var(--page-width));
+  margin-inline: auto;
+}
+
+/* --- Header & footer ----------------------------------------------------- */
+
+.site-header {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.site-header .container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-2) var(--space-5);
+  padding-block: var(--space-4);
+}
+
+.site-name {
+  font-family: var(--font-display);
+  font-size: var(--text-h3);
+  line-height: var(--leading-tight);
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.site-nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--text-sm);
+}
+
+.site-nav a {
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.site-nav a:hover,
+.site-nav a[aria-current="page"] {
+  text-decoration: underline;
+  text-decoration-color: var(--color-accent);
+  text-decoration-thickness: 2px;
+}
+
+.site-footer {
+  padding-block: var(--space-6);
+  border-top: 1px solid var(--color-border);
+  color: var(--color-muted);
+  font-size: var(--text-sm);
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+/* --- Sections & text ----------------------------------------------------- */
+
+.section {
+  padding-block: var(--section-space);
+}
+
+.section + .section {
+  border-top: 1px solid var(--color-border);
+}
+
+.eyebrow {
+  margin-bottom: var(--space-3);
+  color: var(--color-muted);
+  font-size: var(--text-sm);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.lead {
+  font-size: var(--text-lg);
+  color: var(--color-muted);
+}
+
+.note {
+  color: var(--color-muted);
+  font-size: var(--text-sm);
+}
+
+/* Two columns on larger screens: running text beside lists. */
+.split {
+  display: grid;
+  gap: var(--space-6);
+}
+
+@media (min-width: 48em) {
+  .split {
+    grid-template-columns: 3fr 2fr;
+    gap: var(--space-8);
+  }
+}
+
+/* --- Key facts ------------------------------------------------------------ */
+
+.facts {
+  display: grid;
+  margin: var(--space-6) 0 var(--space-4);
+  border-top: 1px solid var(--color-border);
+}
+
+.facts > div {
+  display: grid;
+  grid-template-columns: 8.5rem 1fr;
+  gap: var(--space-4);
+  padding-block: var(--space-3);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.facts dt {
+  padding-top: 0.15em;
+  color: var(--color-muted);
+  font-size: var(--text-sm);
+}
+
+.facts dd {
+  margin: 0;
+}
+
+.facts .note {
+  display: block;
+}
+
+@media (min-width: 48em) {
+  .facts {
+    grid-template-columns: 1fr 1fr;
+    column-gap: var(--space-6);
+  }
+}
+
+/* --- Price -----------------------------------------------------------------
+   The price for the whole stay is the headline number. Dates, length and the
+   monthly equivalent sit underneath, so stays of different length compare
+   easily. */
+
+.price {
+  margin: var(--space-6) 0 0;
+  padding: var(--space-5);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+.price p {
+  margin: 0;
+}
+
+.price p + p {
+  margin-top: var(--space-1);
+}
+
+.price-amount {
+  font-family: var(--font-display);
+  font-size: var(--text-h2);
+  line-height: var(--leading-tight);
+}
+
+.price-label {
+  color: var(--color-muted);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+}
+
+.price-period {
+  font-weight: 600;
+}
+
+/* On the overview cards the price sits inside the card itself. */
+.card .price {
+  margin: var(--space-2) 0;
+  padding: 0;
+  background: none;
+  border: 0;
+}
+
+.card .price-amount {
+  font-size: var(--text-h3);
+}
+
+/* --- Highlights ------------------------------------------------------------
+   Three short selling points under the introduction. */
+
+.highlights {
+  display: grid;
+  gap: var(--space-3);
+  margin: var(--space-6) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.highlights li {
+  padding: var(--space-4) var(--space-5);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+.highlight-title {
+  display: block;
+  margin-bottom: var(--space-1);
+  font-family: var(--font-display);
+  font-size: var(--text-h3);
+  font-weight: 400;
+  line-height: var(--leading-tight);
+}
+
+.highlights p {
+  margin: 0;
+  color: var(--color-muted);
+}
+
+@media (min-width: 48em) {
+  .highlights {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-4);
+  }
+}
+
+/* --- Bullet lists --------------------------------------------------------- */
+
+.features {
+  display: grid;
+  gap: var(--space-2);
+  margin: 0 0 var(--space-6);
+  padding: 0;
+  list-style: none;
+}
+
+.features li {
+  position: relative;
+  padding-left: var(--space-5);
+}
+
+.features li::before {
+  content: "";
+  position: absolute;
+  top: 0.6em;
+  left: 0;
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background: var(--color-accent);
+}
+
+/* --- Gallery --------------------------------------------------------------
+   Phones: a horizontal strip you swipe through (scroll-snap, no JavaScript).
+   Larger screens: a grid with the first photo shown large.
+   Every photo links to its full-size file. */
+
+.gallery {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: var(--gallery-item-mobile);
+  gap: var(--space-3);
+  margin: 0 calc(-1 * var(--gutter));
+  padding: 0 var(--gutter) var(--space-2);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: var(--gutter);
+  list-style: none;
+}
+
+.gallery li {
+  scroll-snap-align: start;
+}
+
+.gallery a {
+  display: block;
+  height: 100%;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--color-placeholder);
+}
+
+.gallery img {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: var(--gallery-ratio);
+  object-fit: cover;
+}
+
+.gallery-hint {
+  margin-bottom: var(--space-4);
+}
+
+@media (min-width: 48em) {
+  .gallery {
+    grid-auto-flow: row;
+    grid-template-columns: repeat(var(--gallery-columns), 1fr);
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+  }
+
+  .gallery li:first-child {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+
+  .gallery-hint .phone-only {
+    display: none;
+  }
+}
+
+/* --- Overview cards ------------------------------------------------------- */
+
+.cards {
+  display: grid;
+  gap: var(--space-6);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 48em) {
+  .cards {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+.card img {
+  width: 100%;
+  aspect-ratio: var(--gallery-ratio);
+  object-fit: cover;
+  background: var(--color-placeholder);
+}
+
+.card-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-5);
+}
+
+.card .eyebrow {
+  margin: 0;
+}
+
+.card h2 {
+  margin: 0;
+  font-size: var(--text-h3);
+}
+
+.card h2 a {
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+/* Makes the whole card clickable through the title link. */
+.card h2 a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.card:hover h2 a {
+  text-decoration: underline;
+  text-decoration-color: var(--color-accent);
+}
+
+.card .button {
+  align-self: flex-start;
+  margin-top: auto;
+}
+
+/* --- Buttons --------------------------------------------------------------- */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
+  padding: var(--space-3) var(--space-5);
+  border: 1.5px solid var(--color-accent);
+  border-radius: var(--radius-pill);
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.button:hover {
+  border-color: var(--color-accent-hover);
+  background: var(--color-accent-hover);
+  color: var(--color-on-accent);
+}
+
+.button-secondary {
+  background: transparent;
+  color: var(--color-accent);
+}
+
+.button-secondary:hover {
+  background: var(--color-surface);
+  color: var(--color-accent-hover);
+}
+
+/* --- Contact ---------------------------------------------------------------- */
+
+.contact {
+  display: grid;
+  gap: var(--space-6);
+  align-items: start;
+}
+
+.contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+/* The QR code only helps on a second device, so it is shown on larger
+   screens only. Phones get the "Message on Signal" button instead. */
+.qr {
+  display: none;
+  margin: 0;
+}
+
+.qr img {
+  width: 11rem;
+  border-radius: var(--radius-sm);
+  background: var(--color-placeholder);
+}
+
+.qr figcaption {
+  margin-top: var(--space-2);
+  color: var(--color-muted);
+  font-size: var(--text-sm);
+}
+
+@media (min-width: 48em) {
+  .contact {
+    grid-template-columns: 1fr auto;
+  }
+
+  .qr {
+    display: block;
+  }
+}

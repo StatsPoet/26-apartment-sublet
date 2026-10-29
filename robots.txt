@@ -1,0 +1,11 @@
+# Ask all crawlers not to crawl or index this site.
+#
+# Note: crawlers only read robots.txt at the root of a domain
+# (statspoet.github.io/robots.txt). On a GitHub Pages project site this
+# file sits under /26-apartment-sublet/, so it is mostly symbolic. The
+# <meta name="robots" content="noindex, nofollow"> tag on every page is what
+# actually applies. Neither is access control: anyone with the link can view
+# the site.
+
+User-agent: *
+Disallow: /
