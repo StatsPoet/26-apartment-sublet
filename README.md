@@ -42,20 +42,26 @@ project path as well as locally.
 
 All apartment text lives directly in the two apartment pages. Search the file
 for the text you want to change. The overview cards in `index.html` repeat a
-few facts (title, price, dates, length of stay, size, monthly equivalent), so
+few facts (title, monthly rent, dates, length of stay, total, size), so
 update them there as well.
+
+Inside sentences, "S-Bahn" and "Wi-Fi" are wrapped in
+`<span class="nowrap">…</span>` so they never break at the hyphen. Keep the
+wrapper when you edit those sentences.
 
 ### Dates and prices
 
 Each apartment has a fixed price for its whole listed stay (currently €2,000
-each). The price block appears in two forms:
+each). The monthly rent is the headline; the total for the stay is shown
+next to the dates. The price block appears in two forms:
 
 1. the visible text, for example `€2,000`, `6 Dec 2026` and `40 nights`;
 2. data attributes the script reads:
    `data-stay-start="2026-12-06" data-stay-end="2027-01-15" data-stay-price="2000"`.
 
 When dates or price change, update **both**, on the apartment page and on its
-overview card. The "That's €… per month" note is written by hand.
+overview card. The monthly rent and the deposit note are written by hand;
+the script only changes the dates and the total.
 
 `assets/js/main.js` handles the start date roll-forward: once the listed start
 date has passed, the page shows today as the start date, the remaining

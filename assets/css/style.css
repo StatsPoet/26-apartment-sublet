@@ -151,6 +151,11 @@ a:hover {
   display: none !important;
 }
 
+/* Keeps short hyphenated words such as "S-Bahn" from breaking at the hyphen. */
+.nowrap {
+  white-space: nowrap;
+}
+
 .skip-link {
   position: absolute;
   top: -10rem;
@@ -305,9 +310,9 @@ a:hover {
 }
 
 /* --- Price -----------------------------------------------------------------
-   The price for the whole stay is the headline number. Dates, length and the
-   monthly equivalent sit underneath, so stays of different length compare
-   easily. */
+   The monthly rent is the headline number. Dates, length and the total for
+   the stay sit underneath, and the deposit gets its own note so it is not
+   mistaken for part of the price. */
 
 .price {
   margin: var(--space-6) 0 0;
@@ -359,7 +364,7 @@ a:hover {
 .highlights {
   display: grid;
   gap: var(--space-3);
-  margin: var(--space-6) 0 0;
+  margin: var(--space-6) 0;
   padding: 0;
   list-style: none;
 }

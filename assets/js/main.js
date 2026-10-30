@@ -2,15 +2,16 @@
 //
 // Each stay has a fixed price for the listed period. Once the listed start
 // date has passed, the stay is shown as starting today and the price is
-// reduced to the remaining nights, at the same price per night. Without
-// JavaScript the dates and prices written in the HTML are shown unchanged.
+// reduced to the remaining nights, at the same price per night. The monthly
+// rent is plain text and never changes. Without JavaScript the dates and
+// totals written in the HTML are shown unchanged.
 //
 // Markup: an element with data-stay-start, data-stay-end (YYYY-MM-DD) and
 // data-stay-price (euros for the whole listed period), containing any of:
-//   [data-stay-dates]   the date range and length (replaced once the stay has ended)
+//   [data-stay-dates]   the date range, length and total (replaced once the stay has ended)
 //   [data-stay-from]    the <time> holding the start date
 //   [data-stay-length]  the length of the stay, e.g. "40 nights"
-//   [data-stay-total]   the price
+//   [data-stay-total]   the total for the stay
 //   [data-stay-rolled]  a hidden note, shown when the start date has moved
 
 const DAY_MS = 24 * 60 * 60 * 1000;
